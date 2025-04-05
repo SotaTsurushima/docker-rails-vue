@@ -1,8 +1,15 @@
 services:
   db:
     image: mysql:8.0.31
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql_volume:/var/lib/mysql
   backend:
-    build: .
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
     command: 
       "bash -c 'rm -f tmp/pids/server.pid &&
       bundle &&
@@ -12,5 +19,9 @@ services:
       - .:/backend
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
     depends_on:
       - db
+volumes:
+  mysql_volume:
