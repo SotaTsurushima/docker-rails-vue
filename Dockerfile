@@ -1,11 +1,13 @@
 FROM ruby:3.3
 
+RUN apt-get update -qq && apt-get install
+RUN mkdir /backend
+
 WORKDIR /backend
 
-COPY Gemfile* /backend/
+ADD Gemfile /backend/Gemfile
+ADD Gemfile.lock /backend/Gemfile.lock
 
 RUN bundle install
 
-EXPOSE 3000
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
+ADD . /backend
