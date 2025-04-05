@@ -5,9 +5,7 @@ RUN mkdir /backend
 
 WORKDIR /backend
 
-ADD Gemfile /backend/Gemfile
-ADD Gemfile.lock /backend/Gemfile.lock
+COPY Gemfile /backend/Gemfile
+COPY Gemfile.lock /backend/Gemfile.lock
 
-RUN bundle install
-
-ADD . /backend
+RUN gem install bundler && bundle update --bundler
