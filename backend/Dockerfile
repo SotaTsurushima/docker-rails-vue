@@ -3,13 +3,13 @@ FROM ruby:3.3
 WORKDIR /backend
 
 # ホストのGemfileをコンテナ内の作業ディレクトリにコピー
-COPY Gemfile Gemfile.lock /app/
+COPY Gemfile Gemfile.lock /backend/
 
 # bundle installを実行
 RUN bundle install
 
 # ホストのファイルをコンテナ内の作業ディレクトリにコピー
-COPY . /app/
+COPY . /backend/
 
 # entrypoint.shをコンテナ内の作業ディレクトリにコピー
 COPY entrypoint.sh /usr/bin/
