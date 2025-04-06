@@ -9,6 +9,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/mysql
   app:
+    # docker/appディレクトリにあるDockerfileを実行する
     build: docker/app
     tty: true
     volumes:
@@ -18,6 +19,7 @@ services:
     depends_on:
       - db
   web:
+    # docker/webディレクトリにあるDockerfileを実行する
     build: docker/web
     ports:
       - "3000:3000"
